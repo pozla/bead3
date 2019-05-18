@@ -1,4 +1,5 @@
 #include "widget.hpp"
+#include "checkboxwidget.hpp"
 #include "graphics.hpp"
 #include <vector>
 #include <string>
@@ -7,7 +8,7 @@
 using namespace genv;
 using namespace std;
 
-ofstream output("output.txt");
+//ofstream output("output.txt");
 
 void eventLoop(vector<Widget*> &widgetVector) {
     event ev;
@@ -22,11 +23,11 @@ void eventLoop(vector<Widget*> &widgetVector) {
         }
         if (active != -1) widgetVector[active]->handle(ev);
         for (Widget *w: widgetVector) w->draw();
-        if (ev.type == ev_key)
+/*        if (ev.type == ev_key)
             if (ev.keycode == key_enter) {
                 for (Widget *w: widgetVector) output << w->getValue() << endl;
                 output << endl;
-            }
+            }*/
         gout << refresh;
     }
 }
@@ -34,6 +35,10 @@ void eventLoop(vector<Widget*> &widgetVector) {
 int main() {
     gout.open(600,200);
     vector<Widget*> widgetVector;
+    CheckBoxWidget *cbw1 = new CheckBoxWidget(25, 25, 20, 20, 1);
+    CheckBoxWidget *cbw2 = new CheckBoxWidget(25, 100, 20, 20, 2);
+    widgetVector.push_back(cbw1);
+    widgetVector.push_back(cbw2);
     for(Widget *w: widgetVector) { w->draw(); }
     gout << refresh;
     eventLoop(widgetVector);
