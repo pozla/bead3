@@ -10,7 +10,7 @@ class CheckBoxWidget: public Widget {
         bool isChecked;
         void drawX(int, int, int);
     public:
-        CheckBoxWidget(int, int, int, int, int);
+        CheckBoxWidget(int, int, int, int);
         virtual void draw();
         virtual void handle(event ev);
 };

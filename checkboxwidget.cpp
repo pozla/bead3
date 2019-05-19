@@ -1,14 +1,11 @@
 #include "checkboxwidget.hpp"
 #include "graphics.hpp"
-#include "algorithm"
-
-#include <iostream>
 
 using namespace genv;
 using namespace std;
 
-CheckBoxWidget::CheckBoxWidget(int positionX_, int positionY_, int sizeX_, int sizeY_, int style_): Widget(positionX_, positionY_, sizeX_, sizeY_) {
-    style = style_;
+CheckBoxWidget::CheckBoxWidget(int positionX_, int positionY_, int sizeX_, int sizeY_): Widget(positionX_, positionY_, sizeX_, sizeY_) {
+    style = 2; //default
     isChecked = false;
 }
 
@@ -23,7 +20,7 @@ void CheckBoxWidget::drawX(int r, int g, int b) {
 }
 
 void CheckBoxWidget::draw() {
-    gout << move_to(positionX, positionY) << color(255, 255, 255) << box(sizeX, sizeY);
+    gout << move_to(positionX, positionY) << color(100, 100, 100) << box(sizeX, sizeY);
     gout << move_to(positionX+1, positionY+1) << color(0, 0, 0) << box(sizeX-2, sizeY-2);
     if (isChecked == true) {
         if (style == 1) drawX(255, 0, 0);
@@ -32,6 +29,6 @@ void CheckBoxWidget::draw() {
 }
 
 void CheckBoxWidget::handle(event ev) {
-    if (ev.type == ev_mouse && ev.button == btn_left && isSelected(ev.pos_x, ev.pos_y)) isChecked = !isChecked;
-    if (ev.type == ev_key && (ev.keycode == key_enter || ev.keycode == ' ')) isChecked = !isChecked;
+    if (isChecked == false && ev.type == ev_mouse && ev.button == btn_left && isSelected(ev.pos_x, ev.pos_y)) { isChecked = !isChecked; style = 1; }
+    if (isChecked == false && ev.type == ev_mouse && ev.button == btn_right && isSelected(ev.pos_x, ev.pos_y)) { isChecked = !isChecked; style = 2; }
 }
