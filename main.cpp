@@ -5,6 +5,8 @@
 #include <string>
 #include <fstream>
 
+#include <iostream>
+
 using namespace genv;
 using namespace std;
 
@@ -46,6 +48,14 @@ class Rules {
             }
             return false;
         }
+        bool fullCheck(int gameData[20][20]) {
+            for (int i=0; i<20; i++) {
+                for (int j=4; j<20; j++) {
+                    if (gameData[i][j] == 0) return false;
+                }
+            }
+            return true;
+        }
 };
 
 void gameEngine(vector<CheckBoxWidget*> &widgetVector) {
@@ -65,6 +75,8 @@ void gameEngine(vector<CheckBoxWidget*> &widgetVector) {
                     if (widgetVector[i]->isSelected(ev.pos_x, ev.pos_y)) {
                         active = i;
                         gameData[active/20][active%20] = 1;
+                        if (rules.horizontalCheck(gameData) || rules.verticalCheck(gameData) || rules.diagonalCheck1(gameData) || rules.diagonalCheck2(gameData)) cout << "Player 1 won!" << endl;
+                        if (rules.fullCheck(gameData)) cout << "It's a draw!" << endl;
                     }
                 }
             }
@@ -73,6 +85,8 @@ void gameEngine(vector<CheckBoxWidget*> &widgetVector) {
                     if (widgetVector[i]->isSelected(ev.pos_x, ev.pos_y)) {
                         active = i;
                         gameData[active/20][active%20] = 2;
+                        if (rules.horizontalCheck(gameData) || rules.verticalCheck(gameData) || rules.diagonalCheck1(gameData) || rules.diagonalCheck2(gameData)) cout << "Player 2 won!" << endl;
+                        if (rules.fullCheck(gameData)) cout << "It's a draw!" << endl;
                     }
                 }
             }
