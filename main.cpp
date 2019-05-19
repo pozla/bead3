@@ -5,20 +5,35 @@
 #include <string>
 #include <fstream>
 
+#include <iostream>
+
 using namespace genv;
 using namespace std;
 
 void gameEngine(vector<CheckBoxWidget*> &widgetVector) {
+    int gameData[20][20];
+    for (int i=0; i<20; i++) {
+        for (int j=0; j<20; j++) gameData[i][j] = 0;
+    }
     gout.open(600, 600);
     gout << color(100, 100, 100) << move_to(49, 49) << box(502, 502);
     event ev;
     int active = -1;
     while (gin >> ev && ev.keycode != key_escape) {
         if (ev.type == ev_mouse) {
-            if (ev.button == btn_left || ev.button == btn_right) {
+            if (ev.button == btn_left) {
                 for (size_t i=0; i<widgetVector.size(); i++) {
                     if (widgetVector[i]->isSelected(ev.pos_x, ev.pos_y)) {
                         active = i;
+                        gameData[active/20+1][active%20+1] = 1;
+                    }
+                }
+            }
+            if (ev.button == btn_right) {
+                for (size_t i=0; i<widgetVector.size(); i++) {
+                    if (widgetVector[i]->isSelected(ev.pos_x, ev.pos_y)) {
+                        active = i;
+                        gameData[active/20+1][active%20+1] = 2;
                     }
                 }
             }
