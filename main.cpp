@@ -52,7 +52,7 @@ void gameEngine(vector<CheckBoxWidget*> &widgetVector) {
     Rules rules;
     int gameData[20][20];
     for (int i=0; i<20; i++) {
-        for (int j=0; j<16; j++) gameData[i][j] = 0;
+        for (int j=0; j<20; j++) gameData[i][j] = 0;
     }
     gout.open(600, 600);
     gout << color(100, 100, 100) << move_to(49, 49) << box(502, 502);
