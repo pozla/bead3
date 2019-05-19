@@ -5,7 +5,7 @@ using namespace genv;
 using namespace std;
 
 CheckBoxWidget::CheckBoxWidget(int positionX_, int positionY_, int sizeX_, int sizeY_): Widget(positionX_, positionY_, sizeX_, sizeY_) {
-    style = 2; //default
+    style = 0; //default
     isChecked = false;
 }
 
