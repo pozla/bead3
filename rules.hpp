@@ -1,7 +1,6 @@
 #ifndef RULES_HPP
 #define RULES_HPP
 
-
 class Rules {
     public:
         bool horizontalCheck(int[20][20]);

@@ -17,7 +17,6 @@ class Widget {
         virtual void draw() = 0;
         virtual bool isSelected(int, int);
         virtual void handle(event ev) = 0;
-//        virtual string getValue() = 0;
 };
 
 #endif // WIDGETS_HPP
