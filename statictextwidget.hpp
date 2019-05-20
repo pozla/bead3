@@ -7,7 +7,7 @@
 
 class StaticTextWidget: public Widget {
     private:
-        int br, bg, bb;
+        int br, bg, bb; //'b' prefix as background
         int r, g, b;
         string txt;
     public:
