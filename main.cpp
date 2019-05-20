@@ -2,9 +2,9 @@
 #include "checkboxwidget.hpp"
 #include "graphics.hpp"
 #include "rules.hpp"
+#include "statictextwidget.hpp"
 #include <vector>
 #include <string>
-#include <fstream>
 
 #include <iostream>
 
